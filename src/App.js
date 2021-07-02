@@ -35,8 +35,7 @@ function App() {
     <form onSubmit={() => {}}>
       <div className="container">
         <input type="text" 
-        Classname="typebox" />
-        {artist}
+        Classname="typebox" value={artist}/>
         <Dropdown options={dropdownData} />
         <button type="submit">Beam me up Scottaye!</button>
       </div>
