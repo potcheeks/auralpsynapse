@@ -2,15 +2,15 @@ import React, {useState} from 'react'
 
 export const Dropdown = (props) => {
 
-const [selectedValue, setSelectedValue] = useState();
+const [selectedVideo, setSelectedVideo] = useState();
 
 
     return (
         <div>
-            <select value={selectedValue} onChange={e => setSelectedValue(e.target.value)}>
-            {props.options.map((item,index) => <option key={index} value={item.value}>{item.name}</option>)}
+            <select value={selectedVideo} onChange={e => setSelectedVideo(e.target.value)}>
+            {props.options.map((item,index) => <option key={index}>{item}</option>)}
              </select>
-             <p>{selectedValue}</p>
+             <p>{selectedVideo}</p>
         </div>
     )
 }
