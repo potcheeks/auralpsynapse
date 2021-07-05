@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import Dropdown from './Dropdown';
+
 
 const ArtistSelection = () => {
   const [input, setInput] = useState("");
@@ -13,7 +15,7 @@ const ArtistSelection = () => {
   const handleClick = (event) => {
     setArtist(input);
     event.preventDefault();
-    console.log("hey")
+    
   }; // logs the final value under state artist
 
 
@@ -50,7 +52,7 @@ const ArtistSelection = () => {
     }
   }, [artist]);
 
-console.log("this is the",videoData)
+console.log(videoData)
 
   return (
     <div className="container">
@@ -62,13 +64,7 @@ console.log("this is the",videoData)
           placeholder="Search for artist"
         />
         <button type="submit" onClick={handleClick}>Submit</button>
-     
-      <h1 style={textStyle}>GENRE </h1>
-      <select>
-        {videoData.map((item, index) => (
-          <option key={index}>{item.strTrack}</option>
-        ))}
-      </select>
+        {artist === "" ? null : <Dropdown videoData={videoData}/>}
     </div>
   );
 };

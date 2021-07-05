@@ -1,18 +1,29 @@
-import React, {useState} from 'react'
+import React, { useState } from "react";
+import MusicVideo from './MusicVideo'
 
-export const Dropdown = (props) => {
+export const Dropdown = ({videoData}) => {
+  const [selectedSong, setSelectedSong] = useState("");
+  const textStyle = { color: "white" };
 
-const [selectedVideo, setSelectedVideo] = useState();
+    const dropdownChanged = e => {
+        setSelectedSong(e.target.value);
+    }    
 
-
-    return (
-        <div>
-            <select value={selectedVideo} onChange={e => setSelectedVideo(e.target.value)}>
-            {props.options.map((item,index) => <option key={index}>{item}</option>)}
-             </select>
-             <p>{selectedVideo}</p>
-        </div>
-    )
-}
+    //  const musicUrl = "https://www.youtube.com/watch?v=gnIZ7RMuLpU"
+  
+  return (
+    <div>
+      <select value={selectedSong} onChange={dropdownChanged}>
+        {videoData.map((item, index) => (
+          <option key={index} value={index}>{item.strTrack}</option>
+        ))}
+      </select>
+      {selectedSong === "" ? null 
+      : <MusicVideo 
+      videoInfo={videoData[selectedSong]}
+      />}
+    </div>
+  );
+};
 
 export default Dropdown;
