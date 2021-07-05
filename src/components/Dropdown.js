@@ -3,7 +3,7 @@ import MusicVideo from './MusicVideo'
 
 export const Dropdown = ({videoData}) => {
   const [selectedSong, setSelectedSong] = useState("");
-  const textStyle = { color: "white" };
+
 
     const dropdownChanged = e => {
         setSelectedSong(e.target.value);
