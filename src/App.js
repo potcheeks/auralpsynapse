@@ -1,5 +1,5 @@
 import "./App.css";
-import { Route, Link, Redirect, Switch, useHistory } from "react-router-dom";
+import { Route, Redirect, Switch, useHistory } from "react-router-dom";
 import "@fontsource/roboto";
 import Container from "@material-ui/core/Container";
 import { BottomNavigation, BottomNavigationAction } from "@material-ui/core/";

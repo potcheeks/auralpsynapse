@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import MusicVideo from './MusicVideo'
 import '@fontsource/roboto';
 import Select from '@material-ui/core/Select';
-import MenuItem from '@material-ui/core/MenuItem';
 
 
 export const Dropdown = ({videoData}) => {
@@ -12,8 +11,6 @@ export const Dropdown = ({videoData}) => {
     const dropdownChanged = e => {
         setSelectedSong(e.target.value);
     }    
-
-    //  const musicUrl = "https://www.youtube.com/watch?v=gnIZ7RMuLpU"
   
   return (
     <div>
