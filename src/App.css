@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  margin-top: 150px;
 }
 
 .App-logo {
@@ -25,7 +26,7 @@
 }
 
 .App-link {
-  color: #61dafb;
+  color: #000000;
 }
 
 @keyframes App-logo-spin {
@@ -38,8 +39,19 @@
 }
 
 body {
-  background-image: url("https://i.pinimg.com/originals/14/81/9f/14819f07a3dccf8b1cc06cee58e2d966.jpg");
-  background-repeat: no-repeat;
-  background-size: auto;
+  background-image: url("https://i.pinimg.com/564x/6f/e0/87/6fe087479c7cab21d14fc23f8ddc534e.jpg");
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
 
+input {
+  color: white !important
+}
+
+.stickToBottom {
+  width: 100%;
+  position: fixed;
+  bottom: 0;
 }

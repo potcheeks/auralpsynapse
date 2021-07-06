@@ -1,5 +1,9 @@
 import React, { useState } from "react";
 import MusicVideo from './MusicVideo'
+import '@fontsource/roboto';
+import Select from '@material-ui/core/Select';
+import MenuItem from '@material-ui/core/MenuItem';
+
 
 export const Dropdown = ({videoData}) => {
   const [selectedSong, setSelectedSong] = useState("");
@@ -13,11 +17,13 @@ export const Dropdown = ({videoData}) => {
   
   return (
     <div>
-      <select value={selectedSong} onChange={dropdownChanged}>
+      <Select
+      value={selectedSong} 
+      onChange={dropdownChanged}>
         {videoData.map((item, index) => (
-          <option key={index} value={index}>{item.strTrack}</option>
+          <option key={index} value={index} className="Select">{item.strTrack}</option>
         ))}
-      </select>
+      </Select>
       {selectedSong === "" ? null 
       : <MusicVideo 
       videoInfo={videoData[selectedSong]}
