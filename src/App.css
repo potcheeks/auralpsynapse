@@ -41,9 +41,9 @@
 body {
   background-image: url("https://i.pinimg.com/564x/6f/e0/87/6fe087479c7cab21d14fc23f8ddc534e.jpg");
   width: 100%;
+  background-size: cover;
   position: absolute;
-  top: 0;
-  left: 0;
+  background-position: center center;
 }
 
 input {
@@ -51,7 +51,16 @@ input {
 }
 
 .stickToBottom {
-  width: 100%;
-  position: fixed;
+  margin-top: calc(5% + 60px);
   bottom: 0;
+  position: fixed;
+  width: 100%;
+}
+
+.songdescription {
+  padding-bottom: 60px;
+}
+
+.headertitles {
+  padding-top:50px;
 }

@@ -4,19 +4,20 @@ import "@fontsource/roboto";
 import Container from "@material-ui/core/Container";
 import { BottomNavigation, BottomNavigationAction } from "@material-ui/core/";
 import HomeIcon from "@material-ui/icons/Home";
-import MusicNoteIcon from '@material-ui/icons/MusicNote';
+import MusicNoteIcon from "@material-ui/icons/MusicNote";
 import FavoriteIcon from "@material-ui/icons/Favorite";
-import {useState} from "react";
+import { useState, useContext } from "react";
+import { ThemeContext } from "./components/MusicVideo"
 
 import ArtistSelection from "./components/ArtistSelection";
 import Favourite from "./components/Favourite";
 import Homepage from "./components/Homepage";
 
 function App() {
+  const [selected, setSelected] = useState(0);
 
-const [selected, setSelected] = useState(0);
-const history = useHistory()
-  
+  const history = useHistory();
+
   function HomeHandleClick() {
     history.push("/");
   }
@@ -26,38 +27,61 @@ const history = useHistory()
   }
 
   function FavouriteHandleClick() {
-    history.push("/favourite");
+    history.push("/playlist");
   }
+
+  const playlist = useContext(ThemeContext)
+  console.log("fromapp", playlist)
+
+
+
+
+
+
 
   return (
     <>
       <Container maxWidth="md">
-      <div>
-        <Switch>
+        <div>
+          <Switch>
+            <Route path="/playlist">
+              <Favourite />
+            </Route>
 
-          <Route path="/favourite">
-            <Favourite />
-          </Route>
+            <Route path="/search">
+              <ArtistSelection />
+            </Route>
 
-          <Route path="/search">
-          <ArtistSelection />
-          </Route>
-
-          <Route path="/">
-          <Homepage />
-          </Route>
-          <Redirect to="/" />
-
-        </Switch>
-      </div>
-       
+            <Route path="/">
+              <Homepage />
+            </Route>
+            <Redirect to="/" />
+          </Switch>
+        </div>
       </Container>
 
-      <BottomNavigation className="stickToBottom" value={selected} onChange={(value, newValue) => setSelected(newValue)} 
-      style={{ width: "100%" }} showLabels>
-        <BottomNavigationAction label="HOME" icon={<HomeIcon />} onClick={HomeHandleClick} />
-        <BottomNavigationAction label="SEARCH" icon={<MusicNoteIcon />} onClick={SearchHandleClick}/>
-        <BottomNavigationAction label="FAVOURITES" icon={<FavoriteIcon />} onClick={FavouriteHandleClick} />
+      <BottomNavigation
+        className="stickToBottom"
+        value={selected}
+        onChange={(value, newValue) => setSelected(newValue)}
+        style={{ width: "100%" }}
+        showLabels
+      >
+        <BottomNavigationAction
+          label="HOME"
+          icon={<HomeIcon />}
+          onClick={HomeHandleClick}
+        />
+        <BottomNavigationAction
+          label="SEARCH"
+          icon={<MusicNoteIcon />}
+          onClick={SearchHandleClick}
+        />
+        <BottomNavigationAction
+          label="PLAYLIST"
+          icon={<FavoriteIcon />}
+          onClick={FavouriteHandleClick}
+        />
       </BottomNavigation>
     </>
   );

@@ -9,7 +9,7 @@ import { ThemeProvider, createMuiTheme } from "@material-ui/core/styles"
 const theme = createMuiTheme({
   typography: {
     h2: {
-      fontSize: 25,
+      fontSize: 30,
       marginBottom: 15,
       color: "white",
     }
@@ -67,7 +67,7 @@ const ArtistSelection = () => {
   return (
     <ThemeProvider theme={theme}>
     <div className="container">
-      <Typography variant="h2">SEARCH</Typography>
+      <Typography className="headertitles" variant="h2">SEARCH</Typography>
       <TextField
         type="text"
         value={input}
@@ -77,9 +77,6 @@ const ArtistSelection = () => {
 
       <Button
         variant="contained"
-        // style={{
-        //   fontSize: 13
-        // }}
         size="small"
         type="submit"
         onClick={handleClick}

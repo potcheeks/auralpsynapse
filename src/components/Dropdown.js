@@ -1,30 +1,44 @@
 import React, { useState } from "react";
-import MusicVideo from './MusicVideo'
-import '@fontsource/roboto';
-import Select from '@material-ui/core/Select';
+import MusicVideo from "./MusicVideo";
+import "@fontsource/roboto";
+import Select from "@material-ui/core/Select";
+import MenuItem from "@material-ui/core/MenuItem";
+import FormControl from "@material-ui/core/FormControl";
+import { makeStyles } from "@material-ui/core/styles";
 
 
-export const Dropdown = ({videoData}) => {
+const useStyles = makeStyles((theme) => ({
+  formControl: {
+    margin: theme.spacing(1),
+    minWidth: 120,
+  },
+  selectEmpty: {
+    marginTop: theme.spacing(2),
+  },
+}));
+
+export const Dropdown = ({ videoData }) => {
   const [selectedSong, setSelectedSong] = useState("");
+  const classes = useStyles();
 
+  const dropdownChanged = (e) => {
+    setSelectedSong(e.target.value);
+  };
 
-    const dropdownChanged = e => {
-        setSelectedSong(e.target.value);
-    }    
-  
   return (
     <div>
-      <Select
-      value={selectedSong} 
-      onChange={dropdownChanged}>
-        {videoData.map((item, index) => (
-          <option key={index} value={index} className="Select">{item.strTrack}</option>
-        ))}
-      </Select>
-      {selectedSong === "" ? null 
-      : <MusicVideo 
-      videoInfo={videoData[selectedSong]}
-      />}
+      <FormControl variant="filled" className={classes.formControl}>
+        <Select value={selectedSong} onChange={dropdownChanged}>
+          {videoData.map((item, index) => (
+            <MenuItem key={index} value={index}>
+              {item.strTrack}
+            </MenuItem>
+          ))}
+        </Select>
+        {selectedSong === "" ? null : (
+          <MusicVideo videoInfo={videoData[selectedSong]} />
+        )}
+      </FormControl>
     </div>
   );
 };
