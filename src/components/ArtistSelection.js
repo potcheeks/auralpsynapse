@@ -21,6 +21,7 @@ const ArtistSelection = ({setFav, fav}) => {
   const [input, setInput] = useState("");
   const [videoData, setVideoData] = useState([]);
   const [artist, setArtist] = useState("");
+  const [error, setError] = useState(null)
 
 
   const handleChange = (event) => {
@@ -39,24 +40,35 @@ const ArtistSelection = ({setFav, fav}) => {
     const artistUrl = `https://www.theaudiodb.com/api/v1/json/1/search.php?s=${artist}`;
 
     const makeApiCall = () => {
-      console.log(artistUrl);
       fetch(artistUrl)
-        .then((res) => res.json())
+        .then((res) => {
+          console.log(res);
+          if(!res.ok) {
+            throw Error("could not fetch the data for that artist")
+          }
+          return res.json();
+        })
         .then((data) => {
-          console.log("idArtist", data.artists[0].idArtist);
-          let artistId = data.artists[0].idArtist;
-          fetch(
-            `https://www.theaudiodb.com/api/v1/json/523532/mvid.php?i=${artistId}`
-          )
-            .then((res) => res.json())
-            .then((data) => {
-              console.log("videodata", data.mvids);
-              let videoDataArray = [];
-              for (let i = 0; i < data.mvids.length; i++) {
-                videoDataArray.push(data.mvids[i]);
-              }
-              setVideoData(videoDataArray);
-            });
+          console.log(data);
+          if(!data.ok) {
+            throw Error("could not fetch the data for that artist")
+          }
+            let artistId = data.artists[0].idArtist;
+            fetch(
+              `https://www.theaudiodb.com/api/v1/json/523532/mvid.php?i=${artistId}`
+            )
+              .then((res) => res.json())
+              .then((data) => {
+                console.log("videodata", data.mvids);
+                let videoDataArray = [];
+                for (let i = 0; i < data.mvids.length; i++) {
+                  videoDataArray.push(data.mvids[i]);
+                }
+                setVideoData(videoDataArray)
+                setError(null)
+              }).catch(error => {
+                setError(error.message);
+              })
         });
     };
     if (artist !== "") {
@@ -65,13 +77,11 @@ const ArtistSelection = ({setFav, fav}) => {
   }, [artist]);
 
 
-  return (
-  
-   
 
-    
+  return (
     <div className="container">
        <Container>
+         { error && <div> {error} </div> }
       <ThemeProvider theme={theme}>
       <Typography className="headertitles" variant="h2">SEARCH</Typography>
       <TextField

@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import * as React from 'react';
 import ReactPlayer from "react-player";
 import "@fontsource/roboto";
 import Typography from "@material-ui/core/Typography";
