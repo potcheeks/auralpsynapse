@@ -30,7 +30,6 @@ const useStyles = makeStyles({
 
 const MusicVideo = ({ videoInfo }) => {
   const classes = useStyles();
-  const bull = <span className={classes.bullet}>•</span>;
   const [playlist, setPlaylist] = useState();
   
 
