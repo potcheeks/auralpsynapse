@@ -17,13 +17,15 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export const Dropdown = ({ videoData }) => {
+export const Dropdown = ({ videoData, setFav, fav }) => {
   const [selectedSong, setSelectedSong] = useState("");
   const classes = useStyles();
 
   const dropdownChanged = (e) => {
     setSelectedSong(e.target.value);
   };
+
+  
 
   return (
     <div>
@@ -36,7 +38,10 @@ export const Dropdown = ({ videoData }) => {
           ))}
         </Select>
         {selectedSong === "" ? null : (
-          <MusicVideo videoInfo={videoData[selectedSong]} />
+          <MusicVideo videoInfo={videoData[selectedSong]} 
+          setFav={setFav}
+          fav={fav}
+          />
         )}
       </FormControl>
     </div>

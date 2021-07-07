@@ -9,8 +9,6 @@ import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 
 
-export const ThemeContext = React.createContext()
-
 const useStyles = makeStyles({
   root: {
     minWidth: 275,
@@ -28,20 +26,16 @@ const useStyles = makeStyles({
   },
 });
 
-const MusicVideo = ({ videoInfo }) => {
+const MusicVideo = ({ videoInfo, setFav, fav }) => {
   const classes = useStyles();
-  const [playlist, setPlaylist] = useState();
-  
 
 
-  const saveList = () => {
-    setPlaylist(videoInfo)
-    
+  const handleSaveList = () => {
+    setFav([...fav,videoInfo])
   };
 
-  console.log("this is my playlist",playlist)
- 
   
+ 
 
   return (
     <>
@@ -52,7 +46,6 @@ const MusicVideo = ({ videoInfo }) => {
 
      
       <div className="songdescription">
-      <ThemeContext.Provider value = {playlist}>
         <Card className={classes.root}>
           <CardContent>
             <Typography variant="body2" component="p">
@@ -60,10 +53,9 @@ const MusicVideo = ({ videoInfo }) => {
             </Typography>
           </CardContent>
           <CardActions>
-            <Button onClick={saveList} size="small">Add to Playlist</Button>
+            <Button onClick={handleSaveList} size="small">Add to Playlist</Button>
           </CardActions>
         </Card>
-        </ThemeContext.Provider>
       </div>
       
     </>

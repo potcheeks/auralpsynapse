@@ -5,21 +5,23 @@ import TextField from "@material-ui/core/TextField";
 import "@fontsource/roboto";
 import Typography from "@material-ui/core/Typography";
 import { ThemeProvider, createMuiTheme } from "@material-ui/core/styles"
+import Container from "@material-ui/core/Container";
 
 const theme = createMuiTheme({
   typography: {
     h2: {
-      fontSize: 30,
+      fontSize: 45,
       marginBottom: 15,
       color: "white",
     }
   }
 })
 
-const ArtistSelection = () => {
+const ArtistSelection = ({setFav, fav}) => {
   const [input, setInput] = useState("");
   const [videoData, setVideoData] = useState([]);
   const [artist, setArtist] = useState("");
+
 
   const handleChange = (event) => {
     setInput(event.target.value);
@@ -62,11 +64,15 @@ const ArtistSelection = () => {
     }
   }, [artist]);
 
-  console.log(videoData);
 
   return (
-    <ThemeProvider theme={theme}>
+  
+   
+
+    
     <div className="container">
+       <Container>
+      <ThemeProvider theme={theme}>
       <Typography className="headertitles" variant="h2">SEARCH</Typography>
       <TextField
         type="text"
@@ -83,9 +89,15 @@ const ArtistSelection = () => {
       >
         submit
       </Button>
-      {artist === "" ? null : <Dropdown videoData={videoData} />}
-    </div>
+      {artist === "" ? null : <Dropdown 
+      videoData={videoData} 
+      setFav={setFav}
+      fav={fav}
+      />}
+    
     </ThemeProvider>
+    </Container>
+    </div>
   );
 };
 

@@ -1,13 +1,13 @@
 import "./App.css";
 import { Route, Redirect, Switch, useHistory } from "react-router-dom";
+import React, { useState } from "react";
+
 import "@fontsource/roboto";
 import Container from "@material-ui/core/Container";
 import { BottomNavigation, BottomNavigationAction } from "@material-ui/core/";
 import HomeIcon from "@material-ui/icons/Home";
 import MusicNoteIcon from "@material-ui/icons/MusicNote";
 import FavoriteIcon from "@material-ui/icons/Favorite";
-import { useState, useContext } from "react";
-import { ThemeContext } from "./components/MusicVideo"
 
 import ArtistSelection from "./components/ArtistSelection";
 import Favourite from "./components/Favourite";
@@ -15,6 +15,7 @@ import Homepage from "./components/Homepage";
 
 function App() {
   const [selected, setSelected] = useState(0);
+  const [fav, setFav] = useState([]);
 
   const history = useHistory();
 
@@ -29,27 +30,23 @@ function App() {
   function FavouriteHandleClick() {
     history.push("/playlist");
   }
-
-  const playlist = useContext(ThemeContext)
-  console.log("fromapp", playlist)
-
-
-
-
+  
 
 
 
   return (
     <>
-      <Container maxWidth="md">
+      <Container maxWidth="lg">
         <div>
           <Switch>
             <Route path="/playlist">
-              <Favourite />
+              <Favourite
+                fav={fav}
+              />
             </Route>
 
             <Route path="/search">
-              <ArtistSelection />
+              <ArtistSelection setFav={setFav} fav={fav}/>
             </Route>
 
             <Route path="/">
