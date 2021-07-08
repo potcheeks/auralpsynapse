@@ -9,6 +9,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 
 
+
 const useStyles = makeStyles({
   root: {
     minWidth: 275,
@@ -41,8 +42,8 @@ const MusicVideo = ({ videoInfo, setFav, fav }) => {
     <>
     
       <div className="reactplayer">
-           <ReactPlayer url={videoInfo.strMusicVid} />
-      </div>
+           <ReactPlayer url={videoInfo.strMusicVid} width="1200px" height="360px"/>
+           </div>
 
      
       <div className="songdescription">
@@ -57,7 +58,7 @@ const MusicVideo = ({ videoInfo, setFav, fav }) => {
           </CardActions>
         </Card>
       </div>
-      
+     
     </>
   );
 };

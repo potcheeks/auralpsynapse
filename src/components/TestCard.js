@@ -21,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
     flex: '1 0 auto',
   },
   cover: {
-    width: 151,
+    width: 170,
   },
   controls: {
     display: 'flex',
@@ -35,6 +35,9 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+
+
+
 export default function MediaControlCard() {
   const classes = useStyles();
   const theme = useTheme();
@@ -43,11 +46,11 @@ export default function MediaControlCard() {
     <Card className={classes.root}>
       <div className={classes.details}>
         <CardContent className={classes.content}>
-          <Typography component="h5" variant="h5">
-            Live From Space
+          <Typography component="h6" variant="h6">
+            Take Me There
           </Typography>
           <Typography variant="subtitle1" color="textSecondary">
-            Mac Miller
+            gardenstate & GVVN
           </Typography>
         </CardContent>
         <div className={classes.controls}>
@@ -64,7 +67,7 @@ export default function MediaControlCard() {
       </div>
       <CardMedia
         className={classes.cover}
-        image="/static/images/cards/live-from-space.jpg"
+        image="https://d9nqml74o2sdi.cloudfront.net/03150c1c-4bbe-45ea-a112-b7a7f9494ab0.86edf681-1549-4baa-aae6-53fe8c766396"
         title="Live from space album cover"
       />
     </Card>
