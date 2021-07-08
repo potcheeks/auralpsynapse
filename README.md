@@ -43,7 +43,7 @@ All chosen songs are added into the playlist section where the videos can be pla
 
 ## APIs Used
 
-TheAudioDB: https://www.theaudiodb.com/a
+TheAudioDB: https://www.theaudiodb.com/
 Although limited and dated, it was easy to use with no need for key nor token.
 
 ---
